@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DVDMovie.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200224172558_Initial")]
+    [Migration("20200225195546_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

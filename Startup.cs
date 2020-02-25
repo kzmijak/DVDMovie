@@ -7,6 +7,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using DVDMovie.Models;
+using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
+using Newtonsoft.Json;
+
 namespace DVDMovie
 {
     public class Startup
@@ -26,6 +29,12 @@ namespace DVDMovie
                     Configuration["Data:Movies:ConnectionString"]
                 )
             );
+            services.AddMvc().AddNewtonsoftJson(opts =>{
+                		opts.SerializerSettings.ReferenceLoopHandling
+                   		 	= ReferenceLoopHandling.Serialize;
+                        opts.SerializerSettings.NullValueHandling
+                            = NullValueHandling.Ignore;
+            });
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

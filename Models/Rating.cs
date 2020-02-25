@@ -1,4 +1,4 @@
-  namespace DVDMovie.Models {
+namespace DVDMovie.Models {
 
     public class Rating {
 
