@@ -4,14 +4,16 @@ using DVDMovie.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DVDMovie.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20200226171300_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -96,16 +98,14 @@ namespace DVDMovie.Migrations
                 {
                     b.HasOne("DVDMovie.Models.Studio", "Studio")
                         .WithMany("Movies")
-                        .HasForeignKey("StudioId")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .HasForeignKey("StudioId");
                 });
 
             modelBuilder.Entity("DVDMovie.Models.Rating", b =>
                 {
                     b.HasOne("DVDMovie.Models.Movie", "Movie")
                         .WithMany("Ratings")
-                        .HasForeignKey("MovieId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("MovieId");
                 });
 #pragma warning restore 612, 618
         }

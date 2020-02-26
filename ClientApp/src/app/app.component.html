@@ -1,6 +1,10 @@
 <table class="table table-sm">
   <tr>
-    <th>Name</th><th>Category</th><th>Price</th><th>Studio</th><th>Rating</th>
+    <th>Name</th>
+    <th>Category</th>
+    <th>Price</th>
+    <th>Studio</th>
+    <th>Rating</th>
   </tr>
   <tr *ngFor="let movie of movies">
     <td>{{movie.name}}</td>
@@ -9,4 +13,29 @@
     <td>{{movie.studio?.name || 'None'}}</td>
     <td>{{movie.ratings?.length || 0}}</td>
   </tr>
-</table> 
+</table>
+<!-- Addition Buttons -->
+<button class="btn btn-primary m-1" (click)="createMovie()">
+  Create Movie
+</button>
+<button class="btn btn-primary m-1" (click)="createMovieAndStudio()">
+  Create Movie and Studio
+</button>
+<!-- Replacement Buttons -->
+<button class="btn btn-primary m-1" (click)="replaceMovie()">
+  Replace movie
+</button>
+<button class="btn btn-primary m-1" (click)="replaceStudio()">
+  Replace studio
+</button>
+<!-- Update Buttons -->
+<button class="btn btn-primary m-1" (click)="updateMovie()">
+  Update Movie
+</button>
+<!-- Deletion Buttons-->
+<button class="btn btn-primary m-1" (click)="deleteMovie()">
+  Delete Movie
+</button>
+<button class="btn btn-primary m-1" (click)="deleteStudio()">
+  Delete Studio
+</button>

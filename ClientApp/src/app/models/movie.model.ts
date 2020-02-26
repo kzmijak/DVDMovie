@@ -6,9 +6,11 @@ export class Movie
     constructor
     (
         public movieId?: number,
+        public image?: string,
         public name?: string,
         public category?: string,
-        public pricate?: number,
+        public description?: string,
+        public price?: number,
         public studio?: Studio,
         public ratings?: Rating[]
     ){}
