@@ -1,20 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { ModelModule } from "./models/model.module";
-import { MovieTableComponent } from "./structure/movieTable.component";
-import { CategoryFilterComponent } from "./structure/categoryFilter.component";
-import { MovieDetailComponent } from './structure/movieDetail.component';
-import { RoutingConfig } from "./structure/app.routing";
+import { RoutingConfig } from "./app.routing";
+import { StoreModule } from "./store/store.module";
+import { MovieSelectionComponent } from "./store/movieSelection.component";
+
 
 @NgModule({
   declarations: [
-    MovieTableComponent,
-    CategoryFilterComponent,
-    MovieDetailComponent,
     AppComponent
   ],
   imports: [
@@ -22,7 +18,8 @@ import { RoutingConfig } from "./structure/app.routing";
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     ModelModule,
-    FormsModule
+    FormsModule,
+    StoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]

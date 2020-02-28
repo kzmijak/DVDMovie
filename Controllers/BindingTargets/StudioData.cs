@@ -1,24 +1,20 @@
 using System.ComponentModel.DataAnnotations;
-
 namespace DVDMovie.Models.BindingTargets
 {
     public class StudioData
     {
         [Required]
-        public string Name {get;set;}
-
+        public string Name { get; set; }
         [Required]
-        public string City {get;set;}
-
+        public string City { get; set; }
         [Required]
         [StringLength(2, MinimumLength = 2)]
-        public string State {get;set;}
-
+        public string State { get; set; }
         public Studio Studio => new Studio
         {
-            Name = this.Name,
-            City = this.City,
-            State = this.State,
+            Name = Name,
+            City = City,
+            State = State
         };
     }
 }
