@@ -3,9 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core'; 
 import { Filter, Pagination } from "./configClasses.repository";
 import { Studio } from "./studio.model";
+import { Order } from "./order.model";
 
 const studiosUrl = "/api/studios";
 const moviesUrl = "/api/movies";
+const ordersUrl = "/api/orders";
+
 @Injectable()
 export class Repository {
 	private filterObject = new Filter();
@@ -104,15 +107,43 @@ export class Repository {
 					this.getStudios();
 				});
 		}
-	
-	
-	
-	
+
+		storeSessionData(dataType: string, data: any)
+		{
+			return this.http.post("/api/session/" + dataType, data)
+				.subscribe(response => {});
+		}
+		getSessionData(dataType: string): any {
+			return this.http.get("/api/session/" + dataType);
+		}
+
+		getOrders() {
+			this.http.get<Order[]>(ordersUrl)
+				.subscribe(data => this.orders = data);
+		}
+		createOrder(order: Order) {
+			this.http.post<any>(ordersUrl, {
+				name: order.name,
+				address: order.address,
+				payment: order.payment,
+				movies: order.movies
+			}).subscribe(data => {
+				order.orderConfirmation = data
+				order.cart.clear();
+				order.clear();
+			});
+		}
+		shipOrder(order: Order) {
+			this.http.post(ordersUrl + "/" + order.orderId,null)
+				.subscribe(r => this.getOrders())
+		}
+
 	movie: Movie;
 	movies: Movie[];
 	studios: Studio[] = [];
 	categories: string[] = [];
-	
+	orders: Order[] = [];
+
 	get filter(): Filter {
 		return this.filterObject;
 	}
